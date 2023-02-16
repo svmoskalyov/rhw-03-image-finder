@@ -11,7 +11,7 @@ export const theme = {
     online: '#2ac22f',
     offline: '#ee301f',
   },
-  space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
+  space: [0, 2, 4, 8, 16, 24, 32, 64, 128, 256],
   fonts: {
     body: 'system-ui, sans-serif',
     heading: 'system-ui, sans-serif',
