@@ -31,8 +31,6 @@ export const Forma = styled(Form)`
   overflow: hidden;
 `;
 
-export const Label = styled.label``;
-
 export const Input = styled(Field)`
   display: inline-block;
   width: 100%;
