@@ -23,8 +23,8 @@ export const Searchbar = ({ onSubmit }) => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Header>
+    <Header>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         <Forma>
           <SearchButton type="submit">
             <SearchLabel />
@@ -40,7 +40,7 @@ export const Searchbar = ({ onSubmit }) => {
           />
           <ErrorMessage name="search" />
         </Forma>
-      </Header>
-    </Formik>
+      </Formik>
+    </Header>
   );
 };
