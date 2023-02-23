@@ -1,3 +1,3 @@
 export const ImageGallery = () => {
-  return <ul class="gallery">Набір li із зображеннями</ul>;
+  return <ul className="gallery">Набір li із зображеннями</ul>;
 };
