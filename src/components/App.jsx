@@ -3,6 +3,7 @@ import { Box } from './Box';
 import { Searchbar } from './Searchbar/Searchbar';
 import { Modal } from './Modal/Modal';
 import { fetchImage } from 'services/api';
+import { ImageGallery } from './ImageGallery/ImageGallery';
 
 const Status = {
   IDLE: 'idle',
@@ -13,7 +14,7 @@ const Status = {
 
 export class App extends Component {
   state = {
-    imageName: '',
+    // imageName: '',
     images: [],
     error: null,
     status: Status.IDLE,
@@ -21,15 +22,16 @@ export class App extends Component {
   };
 
   handleFormSubmit = imageName => {
-    console.log(imageName);
-    this.setState({ imageName });
+    // console.log(imageName);
+    // this.setState({ imageName });
+    this.getSearchImage(imageName);
   };
 
-  getSearchImage = async () => {
+  getSearchImage = async (name) => {
     try {
       this.setState({ status: Status.PENDING });
-      const images = await fetchImage();
-      this.setState({ images, status: Status.RESOLVED });
+      const images = await fetchImage(name);
+      this.setState({ images: images.hits, status: Status.RESOLVED });
     } catch (error) {
       this.setState({ error, status: Status.REJECTED });
       console.log(error.message);
@@ -43,12 +45,16 @@ export class App extends Component {
   };
 
   render() {
-    const { showModal } = this.state;
+    const { showModal, images } = this.state;
 
     return (
       <Box display="grid" gridTemplateColumns="1fr" gridGap={4} pb={5}>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        <button type='button' onClick={this.getSearchImage}>Search image</button>
+        {/* <button type="button" onClick={this.getSearchImage}>
+          Search image
+        </button> */}
+
+        {images.length > 0 && <ImageGallery photos={images} />}
 
         {showModal && (
           <Modal onClose={this.toggleModal}>
