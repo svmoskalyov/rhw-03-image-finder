@@ -1,9 +1,46 @@
-export const Modal = () => {
-  return (
-    <div class="overlay">
-      <div class="modal">
-        <img src="" alt="" />
-      </div>
-    </div>
-  );
-};
+import { Component } from 'react';
+import { createPortal } from 'react-dom';
+import { Backdrop, Content } from './Modal.styled';
+
+const modalRoot = document.querySelector('#modal-root');
+
+export class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      this.props.onClose();
+    }
+  };
+
+  handleBackdropClick = e => {
+    if (e.currentTarget === e.target) {
+      this.props.onClose();
+    }
+  };
+
+  render() {
+    return createPortal(
+      <Backdrop onClick={this.handleBackdropClick}>
+        <Content>{this.props.children}</Content>
+      </Backdrop>,
+      modalRoot
+    );
+  }
+}
+
+// export const Modal = () => {
+//   return (
+//     <div className="overlay">
+//       <div className="modal">
+//         <img src="" alt="" />
+//       </div>
+//     </div>
+//   );
+// };
