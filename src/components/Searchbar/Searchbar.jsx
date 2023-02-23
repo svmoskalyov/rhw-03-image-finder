@@ -1,19 +1,47 @@
-export const Searchbar = ({ onSubmit }) => {
-  return (
-    <header class="searchbar">
-      <form class="form">
-        <button type="submit" class="button">
-          <span class="button-label">Search</span>
-        </button>
+import { Formik, ErrorMessage } from 'formik';
+import {
+  Header,
+  Forma,
+  Input,
+  Label,
+  SearchButton,
+  SearchLabel,
+} from './Searchbar.styled';
 
-        <input
-          class="input"
-          type="text"
-          autocomplete="off"
-          autofocus
-          placeholder="Search images and photos"
-        />
-      </form>
-    </header>
+const initialValues = {
+  search: '',
+};
+
+export const Searchbar = ({ onSubmit }) => {
+  const handleSubmit = async (values, actions) => {
+    if (values.search.trim() === '') {
+      console.log('please input name for search');
+      return;
+    }
+
+    await onSubmit(values);
+    actions.resetForm();
+  };
+
+  return (
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Header>
+        <Forma>
+          <SearchButton type="submit">
+            <SearchLabel />
+          </SearchButton>
+          <Label>
+            <Input
+              name="search"
+              type="text"
+              autoComplete="off"
+              autoFocus
+              placeholder="Search images and photos"
+            />
+            <ErrorMessage name="search" />
+          </Label>
+        </Forma>
+      </Header>
+    </Formik>
   );
 };
