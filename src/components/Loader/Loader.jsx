@@ -1,17 +1,16 @@
-import { Box } from 'components/Box';
-import { Spinner } from './Loader.styled';
+import { Backdrop } from './Loader.styled';
+import { RotatingLines } from 'react-loader-spinner';
 
 export const Loader = () => {
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      mb="10px"
-      fontSize="24px"
-    >
-      <Spinner size="32" />
-      LOADING...
-    </Box>
+    <Backdrop>
+      <RotatingLines
+        strokeColor="grey"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+      />
+    </Backdrop>
   );
 };

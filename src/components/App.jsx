@@ -4,6 +4,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { Modal } from './Modal/Modal';
 import { fetchImage } from 'services/api';
 import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Loader } from './Loader/Loader';
 
 const Status = {
   IDLE: 'idle',
@@ -14,7 +15,6 @@ const Status = {
 
 export class App extends Component {
   state = {
-    // imageName: '',
     images: [],
     error: null,
     status: Status.IDLE,
@@ -22,12 +22,10 @@ export class App extends Component {
   };
 
   handleFormSubmit = imageName => {
-    // console.log(imageName);
-    // this.setState({ imageName });
     this.getSearchImage(imageName);
   };
 
-  getSearchImage = async (name) => {
+  getSearchImage = async name => {
     try {
       this.setState({ status: Status.PENDING });
       const images = await fetchImage(name);
@@ -45,14 +43,13 @@ export class App extends Component {
   };
 
   render() {
-    const { showModal, images } = this.state;
+    const { showModal, images, status } = this.state;
 
     return (
       <Box display="grid" gridTemplateColumns="1fr" gridGap={4} pb={5}>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        {/* <button type="button" onClick={this.getSearchImage}>
-          Search image
-        </button> */}
+
+        {status === Status.PENDING && <Loader />}
 
         {images.length > 0 && <ImageGallery photos={images} />}
 
