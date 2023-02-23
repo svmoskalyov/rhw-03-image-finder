@@ -3,7 +3,6 @@ import {
   Header,
   Forma,
   Input,
-  Label,
   SearchButton,
   SearchLabel,
 } from './Searchbar.styled';
@@ -30,16 +29,16 @@ export const Searchbar = ({ onSubmit }) => {
           <SearchButton type="submit">
             <SearchLabel />
           </SearchButton>
-          <Label>
-            <Input
-              name="search"
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-            />
-            <ErrorMessage name="search" />
-          </Label>
+
+          <Input
+            name="search"
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            required
+          />
+          <ErrorMessage name="search" />
         </Forma>
       </Header>
     </Formik>
