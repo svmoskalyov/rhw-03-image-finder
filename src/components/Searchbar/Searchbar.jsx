@@ -18,7 +18,7 @@ export const Searchbar = ({ onSubmit }) => {
       return;
     }
 
-    await onSubmit(values);
+    await onSubmit(values.search.trim());
     actions.resetForm();
   };
 
