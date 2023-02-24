@@ -4,6 +4,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { fetchImage } from 'services/api';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Loader } from './Loader/Loader';
+import { Button } from './Button/Button';
 
 const Status = {
   IDLE: 'idle',
@@ -92,9 +93,9 @@ export class App extends Component {
         )}
 
         {page < totalPages && (
-          <button type="button" onClick={this.onClickLoadMore}>
+          <Button onClick={this.onClickLoadMore}>
             Load more
-          </button>
+          </Button>
         )}
       </Box>
     );

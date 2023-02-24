@@ -5,6 +5,8 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: ${p => p.theme.space[3]}px;
+  margin-left: auto;
+  margin-right: auto;
   padding-top: ${p => p.theme.space[2]}px;
   padding-bottom: ${p => p.theme.space[2]}px;
   padding-left: ${p => p.theme.space[3]}px;
