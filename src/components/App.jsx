@@ -32,7 +32,7 @@ export class App extends Component {
     const nextPage = page;
 
     if (prevRequest !== nextRequest) {
-      this.setState({ images: [], page: 1 });
+      this.setState({ images: [], page: 1, totalPages: 1 });
     }
 
     if (prevRequest !== nextRequest || prevPage !== nextPage) {
