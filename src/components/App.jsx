@@ -1,11 +1,12 @@
 import { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import { AiOutlineDownload } from 'react-icons/ai';
 import { Box } from './Box';
-import { Searchbar } from './Searchbar/Searchbar';
-import { fetchImage } from 'services/api';
-import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Loader } from './Loader/Loader';
 import { Button } from './Button/Button';
+import { fetchImage } from 'services/api';
+import { Searchbar } from './Searchbar/Searchbar';
+import { ImageGallery } from './ImageGallery/ImageGallery';
 
 const Status = {
   IDLE: 'idle',
@@ -51,6 +52,12 @@ export class App extends Component {
       this.setState({ status: Status.PENDING });
       const images = await fetchImage(request, page);
 
+      if (images.total === 0) {
+        toast.info('No images found. Please submit another query!');
+        this.setState({ status: Status.REJECTED });
+        return;
+      }
+
       if (images.total <= 12) {
         this.setState({
           images: images.hits,
@@ -74,7 +81,7 @@ export class App extends Component {
       }
     } catch (error) {
       this.setState({ error, status: Status.REJECTED });
-      console.log(error.message);
+      toast.error(error.message);
     }
   };
 
@@ -100,6 +107,12 @@ export class App extends Component {
             Load more
           </Button>
         )}
+
+        <ToastContainer
+          autoClose={3000}
+          theme="colored"
+          position="top-center"
+        />
       </Box>
     );
   }

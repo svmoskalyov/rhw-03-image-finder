@@ -1,4 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
+import { toast } from 'react-toastify';
 import {
   Header,
   Forma,
@@ -14,7 +15,7 @@ const initialValues = {
 export const Searchbar = ({ onSubmit }) => {
   const handleSubmit = async (values, actions) => {
     if (values.search.trim() === '') {
-      console.log('please input name for search');
+      toast.warning('Please input name for search.');
       return;
     }
 
@@ -36,7 +37,6 @@ export const Searchbar = ({ onSubmit }) => {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            required
           />
           <ErrorMessage name="search" />
         </Forma>
