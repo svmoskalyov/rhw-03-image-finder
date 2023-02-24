@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { AiOutlineDownload } from 'react-icons/ai';
 import { Box } from './Box';
 import { Searchbar } from './Searchbar/Searchbar';
 import { fetchImage } from 'services/api';
@@ -86,14 +87,12 @@ export class App extends Component {
       <Box display="grid" gridTemplateColumns="1fr" gridGap={4} pb={5}>
         <Searchbar onSubmit={this.handleFormSubmit} />
 
+        {images.length > 0 && <ImageGallery photos={images} />}
+
         {status === Status.PENDING && <Loader />}
 
-        {status === Status.RESOLVED && images.length > 0 && (
-          <ImageGallery photos={images} />
-        )}
-
         {page < totalPages && (
-          <Button onClick={this.onClickLoadMore}>
+          <Button icon={AiOutlineDownload} onClick={this.onClickLoadMore}>
             Load more
           </Button>
         )}
