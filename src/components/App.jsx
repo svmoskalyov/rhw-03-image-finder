@@ -50,23 +50,27 @@ export class App extends Component {
     try {
       this.setState({ status: Status.PENDING });
       const images = await fetchImage(request, page);
-      // console.log(images);
-      // console.log(images.total);
-      // console.log(typeof images.total);
 
       if (images.total <= 12) {
-        // console.log('length <= 12');
         this.setState({
           images: images.hits,
           status: Status.RESOLVED,
         });
       } else {
-        // console.log('length > 12');
         this.setState(prevState => ({
           images: [...prevState.images, ...images.hits],
           totalPages: Math.ceil(images.total / 12),
           status: Status.RESOLVED,
         }));
+
+        if (page > 1) {
+          setTimeout(() => {
+            window.scrollBy({
+              top: 500,
+              behavior: 'smooth',
+            });
+          }, 500);
+        }
       }
     } catch (error) {
       this.setState({ error, status: Status.REJECTED });
