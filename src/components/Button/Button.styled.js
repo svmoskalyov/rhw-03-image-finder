@@ -13,12 +13,12 @@ export const StyledButton = styled.button`
   padding-right: ${p => p.theme.space[3]}px;
   min-width: 180px;
   min-height: 40px;
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 500;
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.body};
+  font-weight: ${p => p.theme.fontWeights.normal};
   border: ${p => p.theme.borders.normal};
   border-radius: ${p => p.theme.radii.normal};
-  background-color: #3f51b5;
+  background-color: ${p => p.theme.colors.primary};
   color: ${p => p.theme.colors.white};
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
@@ -26,6 +26,6 @@ export const StyledButton = styled.button`
 
   :hover,
   :focus {
-    background-color: #303f9f;
+    background-color: ${p => p.theme.colors.secondary};
   }
 `;
