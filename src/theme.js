@@ -4,8 +4,8 @@ export const theme = {
     white: '#fff',
     text: '#2a2a2a',
     background: '#fff',
-    primary: '#07c',
-    secondary: '#05a',
+    primary: '#3f51b5',
+    secondary: '#303f9f',
     accent: '#609',
     muted: '#a4a4a4',
     online: '#2ac22f',
@@ -20,12 +20,12 @@ export const theme = {
   fontSizes: {
     xs: '12px',
     s: '14px',
-    m: '16px',
+    m: '18px',
     l: '32px',
     xl: '64px',
   },
   fontWeights: {
-    normal: 400,
+    normal: 500,
     bold: 700,
   },
   lineHeights: {
