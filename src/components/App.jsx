@@ -103,7 +103,11 @@ export class App extends Component {
         {status === Status.PENDING && <Loader />}
 
         {page < totalPages && (
-          <Button icon={AiOutlineDownload} onClick={this.onClickLoadMore}>
+          <Button
+            icon={AiOutlineDownload}
+            onClick={this.onClickLoadMore}
+            aria-label="button load more"
+          >
             Load more
           </Button>
         )}

@@ -1,5 +1,6 @@
 import { Formik, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import {
   Header,
   Forma,
@@ -43,4 +44,8 @@ export const Searchbar = ({ onSubmit }) => {
       </Formik>
     </Header>
   );
+};
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

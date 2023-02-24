@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { StyledButton } from './Button.styled';
 
 export const Button = ({
@@ -19,4 +20,13 @@ export const Button = ({
       {children}
     </StyledButton>
   );
+};
+
+Button.propTypes = {
+  type: PropTypes.string,
+  icon: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  'aria-label': PropTypes.string.isRequired,
 };
